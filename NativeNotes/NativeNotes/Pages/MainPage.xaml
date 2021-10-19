@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="NativeNotes.Pages.MainPage">
+    <ContentPage.Title>
+        My Notes
+    </ContentPage.Title>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New Note" Clicked="MenuItem_OnClicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Notes}" x:Name="ListView" BindingContext="Notes">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" x:Name="DeleteButton" Clicked="DeleteButton_OnClicked"/>
+                        </ViewCell.ContextActions>
+                        <Label Text="{Binding Heading}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
+
