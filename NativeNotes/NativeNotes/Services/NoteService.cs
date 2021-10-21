@@ -37,13 +37,12 @@ namespace NativeNotes.Services
             notesList?.Add(note);
             File.WriteAllText(FilePath, JsonConvert.SerializeObject(notesList));
         }
-        
+
         public void RemoveNote(NoteModel note)
         {
             var contents = File.ReadAllText(FilePath);
-            Console.WriteLine(contents);
-            var notesList = JsonConvert.DeserializeObject<IList<NoteModel>>(contents);
-            notesList?.Remove(note);
+            var notesList = JsonConvert.DeserializeObject<List<NoteModel>>(contents);
+            notesList?.RemoveAll(n => n.Id == note.Id);
             File.WriteAllText(FilePath, JsonConvert.SerializeObject(notesList));
         }
 
@@ -53,7 +52,6 @@ namespace NativeNotes.Services
             if (File.Exists(FilePath))
             {
                 var text = File.ReadAllText(FilePath);
-                Console.WriteLine(text);
                 var test = JsonConvert.DeserializeObject<NoteModel[]>(text);
                 return test.ToList();
             }

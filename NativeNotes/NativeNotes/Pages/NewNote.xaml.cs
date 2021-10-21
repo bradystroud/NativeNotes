@@ -23,14 +23,12 @@ namespace NativeNotes.Pages
         {
             Model = new NoteModel
             {
+                Id = Guid.NewGuid(),
                 Heading = HeadingEntry.Text,
                 Body = BodyEditor.Text,
                 ReminderDate = Date.Date
             };
-            Console.WriteLine(Model.Body);
-            Console.WriteLine(Model.Heading);
-            Console.WriteLine(Model.ReminderDate);
-            
+
             FileService.AddNote(Model);
 
             await Navigation.PopAsync();

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using NativeNotes.Models;
 using NativeNotes.Services;
 
 namespace NativeNotes.Pages
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage
     {
-        public IList<NoteModel> Notes { get; set; }
         public NotesFileService Service { get; set; }
 
         public MainPage()
@@ -28,13 +28,10 @@ namespace NativeNotes.Pages
             await Navigation.PushAsync(new NewNote());
         }
 
-        private void OnDeleteNote(NoteModel note)
+        private async void DeleteButton_OnClicked(object sender, EventArgs e)
         {
-            Service.RemoveNote(note);
-        }
-
-        private void DeleteButton_OnClicked(object sender, EventArgs e)
-        {
+            if (!await DisplayAlert("Confirm delete", "Are you sure you want to delete", "Yes", "No")) return;
+            
             Service.RemoveNote((NoteModel) ((MenuItem) sender).BindingContext);
             ListView.ItemsSource = Service.ReadNotes();
         }
