@@ -23,14 +23,14 @@ namespace NativeNotes.Pages
             ListView.ItemsSource = Service.ReadNotes();
         }
 
-        private async void MenuItem_OnClicked(object sender, EventArgs e)
+        private async void MenuItem_OnPressed(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NewNote());
         }
 
-        private async void DeleteButton_OnClicked(object sender, EventArgs e)
+        private async void DeleteButton_OnPressed(object sender, EventArgs e)
         {
-            if (!await DisplayAlert("Confirm delete", "Are you sure you want to delete", "Yes", "No")) return;
+            if (!await DisplayAlert("Confirm delete", "Are you sure you want to delete?", "Yes", "No")) return;
             
             Service.RemoveNote((NoteModel) ((MenuItem) sender).BindingContext);
             ListView.ItemsSource = Service.ReadNotes();

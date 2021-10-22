@@ -9,7 +9,7 @@
     </ContentPage.Title>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="New Note" Clicked="MenuItem_OnClicked" />
+        <ToolbarItem Text="New Note" Clicked="MenuItem_OnPressed" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -18,13 +18,12 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="Delete" x:Name="DeleteButton" Clicked="DeleteButton_OnClicked"/>
+                            <MenuItem Text="Delete" x:Name="DeleteButton" Clicked="DeleteButton_OnPressed"/>
                         </ViewCell.ContextActions>
                         <StackLayout VerticalOptions="Center">
                             <Label Text="{Binding Heading}" Padding="5, 0"/>
                             <Label Text="{Binding Body}" FontSize="Caption" TextColor="Gray" Padding="5, 0"/>
                         </StackLayout>
-
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
